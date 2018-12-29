@@ -1,0 +1,17 @@
+.alert-dismissible {
+    .close span {
+        @extend .font-size-22;
+        @extend .align-text-top;
+    }
+}
+
+label[for="optIn"] {
+    &:before {
+        width: 2rem;
+        height: 2rem;
+    }
+    &:after {
+        width: 2rem;
+        height: 2rem;
+    }
+}

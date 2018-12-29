@@ -1,0 +1,20 @@
+.no-list-style {
+    list-style: none;
+}
+
+.list-inline {
+    > li {
+        @extend .d-inline-block;
+        &:not(:last-child) {
+            @extend .margin-right-10;
+        }
+    }
+}
+
+/*
+    Borders
+*/
+
+.border-0 {
+    border: 0;
+}
