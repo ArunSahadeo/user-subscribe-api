@@ -92,6 +92,14 @@ class UserList extends Component {
             localStorage.removeItem('user-modified');
         }
 
+        if (localStorage.getItem('user-deleted')) {
+            this.setState({
+                userDeleted: true
+            });
+
+            localStorage.removeItem('user-deleted');
+        }
+
         fetch('/api/users')
             .then((resp) => {
                 return resp.json();
@@ -112,6 +120,10 @@ class UserList extends Component {
 
     componentWillUnmount() {
         document.body.classList.toggle('bg-dark');
+    }
+
+    shouldComponentUpdate() {
+        return true;
     }
 
     confirmDelete (e) {
@@ -138,9 +150,8 @@ class UserList extends Component {
                 const isSuccess = body.hasOwnProperty('success');
 
                 if (isSuccess) {
-                    self.setState({
-                        userDeleted: true
-                    });
+                    localStorage.setItem('user-deleted', true);
+                    window.location.reload(true);
                 }
             })
         ;
@@ -281,6 +292,12 @@ class UserList extends Component {
                                 }
                             </tbody>
                         </Table>
+
+                        <small class="small text-white margin-top-20">
+                            <Link to="/admin/user/create">
+                                Add a new user
+                            </Link>
+                        </small>
                     </Container>
                 </section>
 
